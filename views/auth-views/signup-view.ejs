@@ -1,0 +1,16 @@
+
+
+<form id="form" method="post" action="/signup">
+  <h2> Put your data in here, digital slave </h2>
+  <% if (typeof messageForDumbUsers === 'string') { %>
+    <p class="error-message"> <%= messageForDumbUsers %> </p>
+<%  } %>
+  <input id="full-name" type="text" name="fullName" placeholder="Enter Full Name">
+  <br>
+  <input id="user-name" type="text" name="userName" placeholder="Enter username">
+  <br>
+  <input id="password" type="password" name="password" placeholder="Enter Password">
+  <br>
+  <button> Sign Me Up! </button>
+
+  </form>
