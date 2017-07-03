@@ -6,6 +6,9 @@ const router = express.Router();
 
 const bcrypt = require('bcrypt');
 
+const passport = require('passport');
+
+
 router.get('/signup', (req, res, next) => {
   res.render('auth-views/signup-view.ejs');
 });
@@ -44,7 +47,52 @@ router.post('/signup', (req, res, next) => {
     }
   );
 });
+//----------------END OF SIGNUP--------------------------------
 
+//-----------LOCAL LOG IN----------------
+router.get('/login', (req, res, next) => {
+  if (req.user) {
+    res.redirect('/');
+  }
+  res.render('auth-views/login-view.ejs');
+});
+router.post('/login', passport.authenticate(//receives 2 args
+  'local',                                  //1st arg is name of the strategy
+  {                                         //2nd arg is settings object
+    successRedirect: '/',                   //where to go if login SUCCESS
+    failureRedirect: '/login'               //where to go if login FAILED
+  }
+));
+//---------------END LOGIN-----------------
+//Local Logout
+router.get('/logout', (req, res, next) => {
+  req.logout();
+  res.redirect('/');
+});
 
+//SOCIAL LOGINS
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook/callback', passport.authenticate(
+  'facebook',
+   {
+     successRedirect: '/special',
+     failureRedirect: '/login'
+   }
+));
+
+router.get('/auth/google', passport.authenticate(
+  'google',
+  {
+    scope: ["https://www.googleapis.com/auth/plus.login",
+          "https://www.googleapis.com/auth/plus.profile.emails.read"]
+  }
+));
+router.get('/auth/google/callback', passport.authenticate(
+  'google',
+   {
+     successRedirect: '/special',
+     failureRedirect: '/login'
+   }
+));
 
 module.exports = router;

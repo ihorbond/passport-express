@@ -1,0 +1,12 @@
+<h2> Add a Room </h2>
+                                        <!--extra attribute required for file upload-->
+<form method="post" action="/rooms/new" enctype="multipart/form-data">
+   <input id="room-name" type="text" name="roomName" placeholder="Room Name">
+   <br>
+   <input id="room-desc" type="text" name="roomDesc" placeholder="Enter Description">
+   <br>
+   <input id="room-photo" type="file" name="roomPhoto" placeholder="Select file to upload">
+
+   <br>
+  <button> Save This Room </button>
+</fomr>

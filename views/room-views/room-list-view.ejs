@@ -1,0 +1,11 @@
+<h2> List of your rooms, human </h2>
+<ul>
+<%  if(typeof roomList === 'object') { %>
+
+<% roomList.forEach((oneRoom) => { %>
+    <li><p><b> <%= oneRoom.name  %> </b></p></li>
+    <p> Pic: <img src="<%= oneRoom.photoURL  %>"> </p>
+    <p> Ghost activity: <%= oneRoom.hasGhosts  %> </p>
+<% })}; %>
+
+</ul>

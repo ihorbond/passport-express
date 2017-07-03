@@ -12,8 +12,21 @@
     <nav>
     <a href="/"> Home </a>
     <br>
+    <% if (typeof currentUser === 'object') { %>
+      <a href="/rooms/new">Add room</a>
+      <br>
+      <a href="/special">Special</a>
+      <br>
+      <a href="/my-rooms">View Rooms</a>
+      <br>
+      <a href="/logout">Log out</a>
+      <br>
+    <% } else { %>
     <a href="/signup"> Sign up </a>
     <br>
+    <a href="/login">Login</a>
+    <br>
+  <% } %>
   </nav>
   </header>
 
